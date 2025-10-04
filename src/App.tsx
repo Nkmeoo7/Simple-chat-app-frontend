@@ -12,7 +12,9 @@ function App() {
       alert('Please enter a room ID.');
       return;
     }
-    const socket = new WebSocket('ws://localhost:8080');
+    const backendUrl = import.meta.env.VITE_WEBSOCKET_URL || 'ws://localhost:8080';
+    const socket = new WebSocket(backendUrl);
+
     socket.onopen = () => {
       console.log('WebSocket connection established.');
       socket.send(JSON.stringify({
