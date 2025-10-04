@@ -8,6 +8,11 @@ function App() {
   const socketRef = useRef<WebSocket | null>(null);
 
   const handleJoin = () => {
+    if (socketRef.current && socketRef.current.readyState !== WebSocket.CLOSED) {
+
+      alert("connection is alredy there and open")
+      return;
+    }
     if (roomId.trim() === '') {
       alert('Please enter a room ID.');
       return;
